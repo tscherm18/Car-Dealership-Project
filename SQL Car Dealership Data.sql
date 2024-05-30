@@ -128,3 +128,48 @@ insert into dealership_mechanics(
 	'3038779474',
 	26
 );
+
+-- Creating add customer function
+
+CREATE OR REPLACE FUNCTION add_customer(_customer_id INTEGER, _first_name VARCHAR, _last_name VARCHAR, _phone_number VARCHAR, _email VARCHAR, _address VARCHAR, _invoice_number INTEGER)
+RETURNS void 
+AS $MAIN$
+BEGIN
+	INSERT INTO dealership_customer(customer_id, first_name, last_name, phone_number, email, address, invoice_number)
+	VALUES(_customer_id, _first_name, _last_name, _phone_number, _email, _address, _invoice_number);
+END;
+$MAIN$
+LANGUAGE plpgsql;
+
+-- Call function to add new customer
+
+SELECT add_customer(54, 'Mick', 'Jagger', '5083489223', 'rollingstonesrule@gmail.com', '101 Honky Tonk Road, London, England', 2);
+
+-- Check to see new customer was added
+select  * from dealership_customer
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
